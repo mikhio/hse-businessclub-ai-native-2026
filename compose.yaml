@@ -1,0 +1,44 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-club}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-local-demo-password}
+      POSTGRES_DB: ${POSTGRES_DB:-club}
+    volumes:
+      - club_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+    mem_limit: 256m
+  app:
+    build: .
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-club}:${POSTGRES_PASSWORD:-local-demo-password}@db:5432/${POSTGRES_DB:-club}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      SEED_DEMO: ${SEED_DEMO:-true}
+    ports:
+      - "127.0.0.1:${APP_PORT:-8173}:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    mem_limit: 256m
+  tests:
+    build: .
+    profiles: [test]
+    environment:
+      TEST_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-club}:${POSTGRES_PASSWORD:-local-demo-password}@db:5432/${POSTGRES_DB:-club}
+    command: ["pytest", "-q"]
+    depends_on:
+      db:
+        condition: service_healthy
+    mem_limit: 256m
+volumes:
+  club_data:

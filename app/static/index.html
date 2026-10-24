@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f1">
+  <title>Свои люди — команды и возможности</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="demo-banner">Учебный прототип · все участники и проекты вымышленные</div>
+  <div id="login-screen" class="login-layout" hidden>
+    <section class="login-story">
+      <a class="brand" href="/" aria-label="Свои люди, на главную"><span class="brand-symbol">с/л</span><span>Свои люди<span class="brand-caption">HSE Business Club · demo</span></span></a>
+      <div class="story-content"><p class="eyebrow">Идеи становятся проектами вместе</p><h1>Твоему проекту<br>нужны <span>свои люди.</span></h1><p class="story-description">Найди команду для стартапа, предложи свои навыки или пригласи человека, которого не хватало.</p><div class="story-note"><span class="spark">✳</span><p>Один участник — много возможностей.<br>Создавай проекты и откликайся сам.</p></div></div>
+      <p class="story-footer">Команды · стартапы · возможности</p>
+    </section>
+    <main class="login-main"><section class="login-card"><p class="eyebrow">Рады знакомству</p><h2>Войти в сообщество</h2><p class="muted">Используй учебный аккаунт, чтобы пройти весь сценарий.</p>
+      <form id="login-form"><label>Email<input id="login-email" name="email" type="email" autocomplete="username" required maxlength="254" placeholder="anna@example.test"></label><label>Пароль<input id="login-password" name="password" type="password" autocomplete="current-password" required maxlength="200"></label><p class="form-error" id="login-error" role="alert"></p><button class="button primary full" type="submit">Войти <span aria-hidden="true">↗</span></button></form>
+      <div class="demo-divider"><span>Быстрый вход в демо</span></div><div class="demo-accounts"><button class="demo-account" data-demo="anna"><span class="avatar apricot">АС</span><span><strong>Анна</strong><small>Основательница / продукт</small></span><span class="arrow">↗</span></button><button class="demo-account" data-demo="max"><span class="avatar lavender">МО</span><span><strong>Максим</strong><small>Backend-разработчик</small></span><span class="arrow">↗</span></button><button class="demo-account" data-demo="maria"><span class="avatar sage">МБ</span><span><strong>Мария</strong><small>Дизайнер / бренд</small></span><span class="arrow">↗</span></button></div>
+    </section></main>
+  </div>
+
+  <div id="app-screen" hidden>
+    <header class="app-header"><a class="brand" href="#feed"><span class="brand-symbol">с/л</span><span>Свои люди<span class="brand-caption">HSE Business Club · demo</span></span></a><div class="header-actions"><button class="button primary" id="new-publication" aria-label="Создать публикацию"><span aria-hidden="true">＋</span> <span>Создать публикацию</span></button><button class="profile-button" id="header-profile" aria-label="Открыть профиль"><span class="avatar small" id="header-avatar"></span></button></div></header>
+    <div class="workspace"><aside class="sidebar"><p class="nav-caption">МОЁ СООБЩЕСТВО</p><nav class="main-nav" aria-label="Главная навигация"><a href="#feed" data-view="feed"><span aria-hidden="true">▦</span> Лента возможностей</a><a href="#mine" data-view="mine"><span aria-hidden="true">◇</span> Мои публикации</a><a href="#sent" data-view="sent"><span aria-hidden="true">↗</span> Мои отклики</a><a href="#received" data-view="received"><span aria-hidden="true">↙</span> Входящие отклики</a><a href="#profile" data-view="profile"><span aria-hidden="true">○</span> Мой профиль</a></nav><div class="sidebar-note"><span class="spark">✳</span><strong>Знакомство — первый шаг</strong><p>Расскажи, что умеешь и чем хочешь заниматься. Так проще найти команду.</p></div><button class="logout" id="logout">Выйти из аккаунта <span aria-hidden="true">↗</span></button></aside>
+    <main id="main-content" class="main-content" tabindex="-1"></main></div>
+  </div>
+  <dialog id="modal"><button class="modal-close" aria-label="Закрыть диалог">×</button><div id="modal-content"></div></dialog>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><p class="noscript">Для работы сервиса включи JavaScript.</p></noscript>
+</body>
+</html>
